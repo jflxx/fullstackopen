@@ -33,8 +33,8 @@ const App = () => {
         </div>
       </form>
       <h2>Numbers</h2>
-      {persons.map((person,i) => {
-        return (<div key={i}>{person.name}<br/></div>)
+      {persons.map(person => {
+        return (<div key={person.name}>{person.name}<br/></div>)
       })}
     </div>
   )
