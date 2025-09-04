@@ -1,8 +1,8 @@
 
 const Total = ({parts}) => {
-   return(<b>total of exercises {parts.reduce((acum,crs) => {
+   return(<b>total of {parts.reduce((acum,crs) => {
     return acum + crs.exercises
-   },0)}</b>)
+   },0)} exercises</b>)
 };
 
 export default Total;
