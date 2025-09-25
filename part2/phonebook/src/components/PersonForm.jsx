@@ -1,4 +1,6 @@
 
+import axios from 'axios'
+const baseURL = 'http://localhost:3001/persons'
 const PersonForm = ({ newName, setNewName, newNumber, setNewNumber,persons,setPersons}) => {
     const handleNumberChange = (event) => {
         setNewNumber(event.target.value)
@@ -16,11 +18,12 @@ const PersonForm = ({ newName, setNewName, newNumber, setNewNumber,persons,setPe
             const nameObject = {
                 name: newName,
                 number: newNumber,
-                id: persons.lenght + 1
             }
-            setPersons([...persons, nameObject]);
-            setNewName('');
-            setNewNumber('');
+            axios.post(baseURL,nameObject).then(response => {
+                setPersons([...persons,response.data])
+                setNewName('');
+                setNewNumber('');
+            })
         } else {
             alert(`${newName} is already added to phonebook`);
         }
