@@ -19,6 +19,16 @@
       "id": "5d28",
       "content": "a new note...AAA",
       "important": false
+    },
+    {
+      "id": "ce21",
+      "content": "AAAA new note...",
+      "important": true
+    },
+    {
+      "id": "ccc9",
+      "content": "a new note...",
+      "important": true
     }
   ]
 }

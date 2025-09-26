@@ -2,7 +2,7 @@ import axios from 'axios'
 import personsService from '../services/persons'
 
 const baseURL = 'http://localhost:3001/persons'
-const PersonForm = ({ newName, setNewName, newNumber, setNewNumber, persons, setPersons }) => {
+const PersonForm = ({ newName, setNewName, newNumber, setNewNumber, persons, setPersons, setErrorMessage}) => {
     const handleNumberChange = (event) => {
         setNewNumber(event.target.value)
     }
@@ -24,6 +24,12 @@ const PersonForm = ({ newName, setNewName, newNumber, setNewNumber, persons, set
                 setPersons([...persons, returnedPerson]);
                 setNewName('');
                 setNewNumber('');
+                setErrorMessage(
+                    `Added ${newName}`
+                )
+                setTimeout(() => {
+                    setErrorMessage(null)
+                }, 5000)
             })
 
         } else {
@@ -34,6 +40,12 @@ const PersonForm = ({ newName, setNewName, newNumber, setNewNumber, persons, set
                         setPersons(persons.map(p => p.id !== person.id? p: returnedPerson));
                         setNewName('');
                         setNewNumber('');
+                        setErrorMessage(
+                            `modificated ${newName}`
+                        )
+                        setTimeout(() => {
+                            setErrorMessage(null)
+                        }, 5000)
                     })
                 }
         }
