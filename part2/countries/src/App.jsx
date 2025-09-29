@@ -9,6 +9,7 @@ function App() {
   const [browser, setBrowser] = useState('');
   const [list, setList] = useState([]);
   const [country, setCountry] = useState(null);
+  const [selectedCountry, setSelectedCountry] = useState(null);
 
   useEffect(() => {
     countriesService.getAll().then(returnedCountries => {
@@ -21,7 +22,7 @@ function App() {
     setBrowser(value);
 
     const filtered = countries.filter(c =>
-      c.name.common.toLowerCase().startsWith(value.toLowerCase())
+      c.name.common.toLowerCase().includes(value.toLowerCase())
     );
 
     if (filtered.length > 10) {
@@ -40,6 +41,14 @@ function App() {
     }
   }
 
+
+  const handleShow = (name) =>{
+    countriesService.getCountry(name)
+      .then(response => setCountry(response));
+    setList([]);
+  }
+
+  console.log(country);
   return (
     <>
       <Browser browser={browser} onChangeBrowser={onChangeBrowser}></Browser>
@@ -49,7 +58,7 @@ function App() {
         ) : list.length > 1 ? (
           list.map(c => (
             <div key={c.cca3}>
-              {c.name.common}
+              {c.name.common} <button onClick={() => handleShow(c.name.common)}>Show</button>
               <br />
             </div>
           ))
